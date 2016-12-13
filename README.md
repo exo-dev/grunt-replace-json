@@ -41,11 +41,11 @@ The path of the file where the changes will be applied.
 #### changes
 
 A JSON object of the changes to be applied. Each key is the attribute name for a single property or  *attribute0*.*attribute1*.(...).*attributeN*
-for nested attributes.
+for nested attributes. If the attribute isn't present in the file, it will be added.
 
 ### Usage Example
 
-In this example we change the version of the dotenv dependency in our `package.json`.
+In this example we change the version of the dotenv dependency and add a new one in our `package.json`.
 
 ```js
 grunt.initConfig({
@@ -53,7 +53,8 @@ grunt.initConfig({
     dotenv:{
         src: 'dist/package.json',
         changes: {
-            'dependencies.dotenv': '^2.0.0'
+            'dependencies.dotenv': '^2.0.0',
+            'dependencies.grunt': '^0.4.2'
         }
     },
   },
@@ -74,6 +75,7 @@ Result file:
 {
     "dependencies": {
         "dotenv": "^2.0.0",
+        "grunt": "^0.4.2"
     }
 }
 ```
